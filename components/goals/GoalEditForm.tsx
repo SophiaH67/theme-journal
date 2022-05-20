@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   QueryDocumentSnapshot,
   updateDoc,
 } from "firebase/firestore";
@@ -52,6 +53,7 @@ export default function GoalEditForm({
             id="title"
             type="text"
             placeholder="Title"
+            maxLength={14}
             defaultValue={goal?.data()?.title}
           />
         </div>
@@ -74,13 +76,14 @@ export default function GoalEditForm({
           {goal && (
             <button
               className="rounded border border-red-500 bg-red-700 bg-transparent py-2 px-4 font-semibold text-white hover:border-transparent hover:bg-red-800 hover:text-white"
-              type="submit"
+              type="button"
+              onClick={() => deleteDoc(goal.ref).then(afterSubmit)}
             >
               Delete
             </button>
           )}
           <button
-            className="rounded border border-blue-500 bg-blue-700 bg-transparent py-2 px-4 font-semibold text-white hover:border-transparent hover:bg-blue-800 hover:text-white"
+            className="rounded border bg-blue-500 py-2 px-3 text-sm font-semibold text-white hover:bg-blue-600"
             type="submit"
           >
             Save

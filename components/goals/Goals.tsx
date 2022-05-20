@@ -28,10 +28,15 @@ export default function Goals({
     return <div>Error: {JSON.stringify(error)} </div>;
   }
 
+  // sort goals by title alphabetically
+  const sortedGoals = goals?.docs.sort((a, b) =>
+    a.data().title.localeCompare(b.data().title)
+  );
+
   return (
     <>
       {goals ? (
-        <table className="text-md max-w-full border-collapse md:text-3xl">
+        <table className="max-w-full border-collapse text-sm md:text-3xl">
           <thead>
             <tr className="border-b-2 border-gray-200">
               <th>Title</th>
@@ -48,7 +53,7 @@ export default function Goals({
             </tr>
           </thead>
           <tbody>
-            {goals.docs.map((goal) => (
+            {sortedGoals?.map((goal) => (
               <GoalTableEntry
                 key={goal.id}
                 goal={goal}

@@ -8,6 +8,7 @@ export default function GoalsHelpTooltip() {
           props: { className: "inline" },
           size: "72x72",
           ext: ".png",
+          protocol: "https",
         })}
         : Not Started
       </span>
@@ -16,6 +17,7 @@ export default function GoalsHelpTooltip() {
           props: { className: "inline" },
           size: "72x72",
           ext: ".png",
+          protocol: "https",
         })}
         : In Progress
       </span>
@@ -24,6 +26,7 @@ export default function GoalsHelpTooltip() {
           props: { className: "inline" },
           size: "72x72",
           ext: ".png",
+          protocol: "https",
         })}
         : Completed
       </span>

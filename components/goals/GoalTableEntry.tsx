@@ -94,6 +94,7 @@ function GoalTableTd({
             "m-auto cursor-pointer hover:bg-gray-200 m-1 w-8 h-8 md:w-16 md:h-16",
           onClick: cycleEmoji,
         },
+        protocol: "https",
       })}
     </td>
   );
