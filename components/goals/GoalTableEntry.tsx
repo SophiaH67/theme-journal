@@ -1,6 +1,8 @@
 import { Goal, Progress } from "../../lib/goals";
 import emoji from "react-easy-emoji";
 import { QueryDocumentSnapshot, updateDoc } from "firebase/firestore";
+import { useState } from "react";
+import GoalEditModal from "./GoalEditModal";
 
 export default function GoalTableEntry({
   goal,
@@ -11,9 +13,20 @@ export default function GoalTableEntry({
   days: number;
   startDate: Date;
 }) {
+  const [editModalOpen, setEditModalOpen] = useState(false);
   return (
     <tr key={goal.id}>
-      <td className="p-2 md:p-4">{goal.data().title}</td>
+      <GoalEditModal
+        goal={goal}
+        open={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+      />
+      <td
+        className="cursor-pointer p-2 md:p-4"
+        onClick={() => setEditModalOpen(true)}
+      >
+        {goal.data().title}
+      </td>
       {Array.from(Array(days).keys()).map((day) => (
         <GoalTableTd
           key={day}

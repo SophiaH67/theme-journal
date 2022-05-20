@@ -3,8 +3,6 @@ import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 export interface Goal {
   id: string;
   title: string;
-  halfCircle: string;
-  fullCircle: string;
   description: string;
   progress: { [key: string]: Progress }; // key is yyyy-mm-dd
 }
@@ -20,8 +18,6 @@ export const converter = {
     return {
       id: goal.id,
       title: goal.title,
-      halfCircle: goal.halfCircle,
-      fullCircle: goal.fullCircle,
       description: goal.description,
       progress: goal.progress,
     };
@@ -31,8 +27,6 @@ export const converter = {
     return {
       id: data.id,
       title: data.title,
-      halfCircle: data.halfCircle,
-      fullCircle: data.fullCircle,
       description: data.description,
       progress: data.progress,
     };
