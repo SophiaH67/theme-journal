@@ -29,7 +29,7 @@ export default function Goals({
   }
 
   return (
-    <div className="max-w-max mx-auto border border-gray-200 rounded-lg shadow-md px-6 py-3">
+    <div className="mx-auto max-w-max rounded-lg border border-gray-200 px-6 py-3 shadow-md">
       {goals ? (
         <table className="max-w-full">
           <thead>

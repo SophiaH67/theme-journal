@@ -10,7 +10,7 @@ export default function Nav() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="h-12 bg-gray-200 w-screen flex items-center justify-between mb-4">
+    <div className="mb-4 flex h-16 w-screen items-center justify-between bg-gray-200">
       <div className="flex items-center">
         <Logo />
         <div className="hidden md:block">
@@ -24,7 +24,7 @@ export default function Nav() {
         // Open the login modal when the user clicks the login button, which has
         // social login buttons.
         <button
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          className="rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
           onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
         >
           Login

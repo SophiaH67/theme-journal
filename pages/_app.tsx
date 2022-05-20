@@ -4,7 +4,7 @@ import Nav from "../components/nav/Nav";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="min-h-screen min-w-screen">
+    <div className="min-w-screen min-h-screen">
       <Nav />
       <Component {...pageProps} />
     </div>

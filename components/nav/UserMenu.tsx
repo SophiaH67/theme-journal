@@ -5,18 +5,18 @@ import { auth } from "../../lib/app";
 export default function UserMenu({ user }: { user: User }) {
   return (
     <div
-      className="flex items-center cursor-pointer"
+      className="flex cursor-pointer items-center"
       onClick={() => auth.signOut()}
       title="Logout"
     >
       <Image
-        className="rounded-full h-8 w-8 mr-2"
+        className="mr-2 h-8 w-8 rounded-full"
         src={user.photoURL || "/images/user.png"}
         alt="User"
         width={32}
         height={32}
       />
-      <span className="mx-2">{user.displayName}</span>
+      <span className="mx-2 text-3xl text-gray-700">{user.displayName}</span>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function Link({
 }) {
   return (
     <NextLink href={href}>
-      <a className="text-gray-700 m-4 text-xl">{children}</a>
+      <a className="m-4 text-3xl text-gray-700">{children}</a>
     </NextLink>
   );
 }
