@@ -5,6 +5,7 @@ export interface Goal {
   title: string;
   description: string;
   progress: { [key: string]: Progress }; // key is yyyy-mm-dd
+  owner: string; // user id
 }
 
 export enum Progress {
@@ -20,6 +21,7 @@ export const converter = {
       title: goal.title,
       description: goal.description,
       progress: goal.progress,
+      owner: goal.owner,
     };
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<DocumentData>): Goal => {
@@ -29,6 +31,7 @@ export const converter = {
       title: data.title,
       description: data.description,
       progress: data.progress,
+      owner: data.owner,
     };
   },
 };

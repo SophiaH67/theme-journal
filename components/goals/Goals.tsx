@@ -1,6 +1,7 @@
-import { collection } from "firebase/firestore";
+import { collection, orderBy, query, where } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { firestore } from "../../lib/app";
+import { auth, firestore } from "../../lib/app";
 import { converter, Goal } from "../../lib/goals";
 import GoalTableEntry from "./GoalTableEntry";
 
@@ -11,14 +12,20 @@ export default function Goals({
   startDate: Date;
   endDate: Date;
 }) {
-  const daysDiff = Math.ceil(
-    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-  );
+  const [user] = useAuthState(auth);
   const goalsCollection = collection(firestore, "goals").withConverter(
     converter
   );
 
-  const [goals, loading, error] = useCollection<Goal>(goalsCollection);
+  // Only query for documents where doc.\owner === user.uid
+
+  const [goals, loading, error] = useCollection<Goal>(
+    query(goalsCollection, where("owner", "==", user?.uid || "abc123"))
+  );
+
+  if (!user) {
+    return <div>You must be logged in to view this page.</div>;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -33,10 +40,14 @@ export default function Goals({
     a.data().title.localeCompare(b.data().title)
   );
 
+  const daysDiff = Math.ceil(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+  );
+
   return (
     <>
       {goals ? (
-        <table className="max-w-full border-collapse text-sm md:text-3xl">
+        <table className="max-w-full border-collapse text-sm md:text-3xl" cellPadding="4rem">
           <thead>
             <tr className="border-b-2 border-gray-200">
               <th>Title</th>

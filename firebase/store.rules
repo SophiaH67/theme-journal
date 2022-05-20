@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow create: if request.resource.data.owner == request.auth.uid;
+      match /goals/{goalId} {
+        // If goal.owner is equal to the current user, then allow.
+        allow read, write, delete: if resource.data.owner == request.auth.uid;
+      }
+    }
+  }
+}

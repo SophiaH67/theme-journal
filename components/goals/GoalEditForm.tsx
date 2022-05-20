@@ -5,7 +5,8 @@ import {
   QueryDocumentSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import { firestore } from "../../lib/app";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, firestore } from "../../lib/app";
 import { Goal } from "../../lib/goals";
 
 export default function GoalEditForm({
@@ -17,6 +18,8 @@ export default function GoalEditForm({
   children: JSX.Element;
   afterSubmit?: () => void;
 }) {
+  const [user] = useAuthState(auth);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -32,6 +35,7 @@ export default function GoalEditForm({
       await addDoc(collection(firestore, "goals"), {
         title: target.title.value,
         description: target.description.value,
+        owner: user?.uid || "abc123",
         progress: {},
       });
     }
