@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Goals from "../components/goals/Goals";
 import GoalsHelpTooltip from "../components/goals/GoalsHelpTooltip";
+import GoalEditModal from "../components/goals/GoalEditModal";
 
 const GoalsPage: NextPage = () => {
   function getFirstDayOfWeek(date: Date) {
@@ -16,6 +17,7 @@ const GoalsPage: NextPage = () => {
       <div className="mx-auto w-max">
         <Goals startDate={startOfWeek} endDate={endOfWeek} />
         <GoalsHelpTooltip />
+        <GoalEditModal />
       </div>
     </div>
   );
