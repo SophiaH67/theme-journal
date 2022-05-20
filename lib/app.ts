@@ -21,7 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 // initializeFirestore must be called before getFirestore()
-initializeFirestore(app, {
+export const firestore = initializeFirestore(app, {
   ignoreUndefinedProperties: true,
   // Pass long polling setting to Firestore when running in Cypress
   // Needed for Firestore support in Cypress (see https://github.com/cypress-io/cypress/issues/6350)

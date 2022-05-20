@@ -4,13 +4,18 @@ import { auth } from "../../lib/app";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import UserMenu from "./UserMenu";
+import Link from "./Link";
 
 export default function Nav() {
   const [user] = useAuthState(auth);
 
   return (
     <div className="h-12 bg-gray-200 w-screen flex items-center justify-between">
-      <Logo />
+      <div className="flex items-center">
+        <Logo />
+        {user && <Link href="/">Home</Link>}
+        {user && <Link href="/goals">Goals</Link>}
+      </div>
       {user ? (
         <UserMenu user={user} />
       ) : (
