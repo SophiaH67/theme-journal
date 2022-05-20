@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Goals from "../components/goals/Goals";
+import GoalsHelpTooltip from "../components/goals/GoalsHelpTooltip";
 
 const GoalsPage: NextPage = () => {
   function getFirstDayOfWeek(date: Date) {
@@ -14,6 +15,7 @@ const GoalsPage: NextPage = () => {
     <div className="mx-auto w-full max-w-3xl rounded-lg border border-gray-200 py-3 shadow-md md:px-6">
       <div className="mx-auto w-max">
         <Goals startDate={startOfWeek} endDate={endOfWeek} />
+        <GoalsHelpTooltip />
       </div>
     </div>
   );

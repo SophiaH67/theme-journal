@@ -13,7 +13,7 @@ export default function GoalTableEntry({
 }) {
   return (
     <tr key={goal.id}>
-      <td>{goal.data().title}</td>
+      <td className="p-2 md:p-4">{goal.data().title}</td>
       {Array.from(Array(days).keys()).map((day) => (
         <GoalTableTd
           key={day}
