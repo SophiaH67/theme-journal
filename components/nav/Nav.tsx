@@ -10,11 +10,13 @@ export default function Nav() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="h-12 bg-gray-200 w-screen flex items-center justify-between">
+    <div className="h-12 bg-gray-200 w-screen flex items-center justify-between mb-4">
       <div className="flex items-center">
         <Logo />
-        {user && <Link href="/">Home</Link>}
-        {user && <Link href="/goals">Goals</Link>}
+        <div className="hidden md:block">
+          {user && <Link href="/">Home</Link>}
+          {user && <Link href="/goals">Goals</Link>}
+        </div>
       </div>
       {user ? (
         <UserMenu user={user} />
