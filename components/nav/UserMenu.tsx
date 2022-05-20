@@ -16,7 +16,9 @@ export default function UserMenu({ user }: { user: User }) {
         width={32}
         height={32}
       />
-      <span className="mx-2 text-3xl text-gray-700">{user.displayName}</span>
+      <span className="text-md mx-2 text-gray-700 md:text-3xl">
+        {user.displayName}
+      </span>
     </div>
   );
 }

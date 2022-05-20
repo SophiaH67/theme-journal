@@ -10,7 +10,13 @@ const GoalsPage: NextPage = () => {
   const startOfWeek = getFirstDayOfWeek(new Date());
   const endOfWeek = new Date(startOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-  return <Goals startDate={startOfWeek} endDate={endOfWeek} />;
+  return (
+    <div className="mx-auto w-full max-w-3xl rounded-lg border border-gray-200 py-3 shadow-md md:px-6">
+      <div className="mx-auto w-max">
+        <Goals startDate={startOfWeek} endDate={endOfWeek} />
+      </div>
+    </div>
+  );
 };
 
 export default GoalsPage;

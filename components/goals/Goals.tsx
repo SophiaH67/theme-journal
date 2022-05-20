@@ -29,14 +29,17 @@ export default function Goals({
   }
 
   return (
-    <div className="mx-auto max-w-max rounded-lg border border-gray-200 px-6 py-3 shadow-md">
+    <>
       {goals ? (
-        <table className="max-w-full">
+        <table className="text-md max-w-full border-collapse md:text-3xl">
           <thead>
-            <tr className="border-b border-gray-200">
+            <tr className="border-b-2 border-gray-200">
               <th>Title</th>
               {Array.from(Array(daysDiff).keys()).map((day) => (
-                <th key={day} className="w-8 border-x border-gray-200">
+                <th
+                  key={day}
+                  className="w-10 border-x border-gray-200 p-1 md:w-20"
+                >
                   {new Date(
                     startDate.getTime() + day * 24 * 60 * 60 * 1000
                   ).toLocaleDateString("en-US", { weekday: "short" })}
@@ -58,6 +61,6 @@ export default function Goals({
       ) : (
         <div>No goals</div>
       )}
-    </div>
+    </>
   );
 }
