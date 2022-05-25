@@ -7,7 +7,7 @@ import Footer from "../components/home/Footer";
 function MyApp({ Component, pageProps }: AppProps) {
   ReactModal.setAppElement("#__next");
   return (
-    <div className="min-w-screen min-h-screen">
+    <div className="min-w-screen min-h-screen font-roboto">
       <div className="flex min-h-screen flex-col justify-between">
         <div>
           <Nav />

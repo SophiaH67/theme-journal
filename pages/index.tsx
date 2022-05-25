@@ -5,9 +5,14 @@ const Home: NextPage = () => {
   return (
     <div>
       <Segment image={"/goals_example.png"} left={false}>
-        <h1 className="table-cell h-full text-center align-middle text-4xl font-bold md:text-6xl">
-          Goal Markers
-        </h1>
+        <div className="table-cell h-full align-middle">
+          <h1 className="text-center text-4xl font-bold md:text-6xl">
+            Goal Tracker
+          </h1>
+          <p className="text-center text-xl md:text-2xl">
+            Track your goals and achieve them.
+          </p>
+        </div>
       </Segment>
     </div>
   );
