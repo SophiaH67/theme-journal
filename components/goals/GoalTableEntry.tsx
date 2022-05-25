@@ -3,6 +3,7 @@ import emoji from "react-easy-emoji";
 import { QueryDocumentSnapshot, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import GoalEditModal from "./GoalEditModal";
+import { Dayjs } from "dayjs";
 
 export default function GoalTableEntry({
   goal,
@@ -11,7 +12,7 @@ export default function GoalTableEntry({
 }: {
   goal: QueryDocumentSnapshot<Goal>;
   days: number;
-  startDate: Date;
+  startDate: Dayjs;
 }) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   return (
@@ -28,11 +29,7 @@ export default function GoalTableEntry({
         {goal.data().title}
       </td>
       {Array.from(Array(days).keys()).map((day) => (
-        <GoalTableTd
-          key={day}
-          goal={goal}
-          date={new Date(startDate.getTime() + day * 24 * 60 * 60 * 1000)}
-        />
+        <GoalTableTd key={day} goal={goal} date={startDate.add(day, "day")} />
       ))}
     </tr>
   );
@@ -43,7 +40,7 @@ function GoalTableTd({
   date,
 }: {
   goal: QueryDocumentSnapshot<Goal>;
-  date: Date;
+  date: Dayjs;
 }) {
   const progress =
     goal.data().progress[date.toISOString().slice(0, 10)] ||
