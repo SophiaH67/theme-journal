@@ -1,10 +1,13 @@
 import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
 import Segment from "../components/home/Segment";
 import SegmentDescription from "../components/home/SegmentDescription";
+import SEO from "../lib/seo";
 
 const Home: NextPage = () => {
   return (
     <div>
+      <NextSeo {...SEO} />
       <Segment image={"/goals_example.png"} left={false}>
         <div className="table-cell h-full align-middle">
           <h1 className="text-center text-4xl font-bold md:text-6xl">
