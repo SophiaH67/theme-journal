@@ -17,22 +17,28 @@ const GoalsPage: NextPage = () => {
 
   return (
     <div className="mx-auto w-full max-w-max rounded-lg border border-gray-200 py-3 shadow-md md:px-6">
-      <div className="flex justify-center">
-        <button
-          className="rounded-l-lg border border-gray-200 px-2 py-1 font-mono text-2xl font-semibold text-gray-600"
-          onClick={() => setWeek(week - 1)}
-        >
-          -
-        </button>
-        <p className="m-0 border border-gray-200 p-2 text-center font-mono text-2xl font-semibold text-gray-600">
-          Week {week}
-        </p>
-        <button
-          className="rounded-r-lg border border-gray-200 px-2 py-1 font-mono text-xl font-semibold text-gray-600"
-          onClick={() => setWeek(week + 1)}
-        >
-          +
-        </button>
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-gray-700 md:text-base">
+          Week of {startDate.format("MMMM D, YYYY")} -{" "}
+          {endDate.format("MMMM D, YYYY")}
+        </span>
+        <div className="flex justify-center text-xs font-semibold text-gray-600 md:text-2xl">
+          <button
+            className="rounded-l-lg border border-gray-200 px-2 py-1 font-mono"
+            onClick={() => setWeek(week - 1)}
+          >
+            -
+          </button>
+          <p className="m-0 border border-gray-200 p-2 text-center">
+            Week {week}
+          </p>
+          <button
+            className="rounded-r-lg border border-gray-200 px-2 py-1 font-mono"
+            onClick={() => setWeek(week + 1)}
+          >
+            +
+          </button>
+        </div>
       </div>
       <div className="mx-auto w-max">
         <Goals startDate={startDate} endDate={endDate} />
