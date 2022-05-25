@@ -4,13 +4,14 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../lib/app";
 import { converter, Goal } from "../../lib/goals";
 import GoalTableEntry from "./GoalTableEntry";
+import { Dayjs } from "dayjs";
 
 export default function Goals({
   startDate,
   endDate,
 }: {
-  startDate: Date;
-  endDate: Date;
+  startDate: Dayjs;
+  endDate: Dayjs;
 }) {
   const [user] = useAuthState(auth);
   const goalsCollection = collection(firestore, "goals").withConverter(
@@ -40,14 +41,15 @@ export default function Goals({
     a.data().title.localeCompare(b.data().title)
   );
 
-  const daysDiff = Math.ceil(
-    (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-  );
+  const daysDiff = endDate.diff(startDate, "days");
 
   return (
     <>
       {goals ? (
-        <table className="max-w-full border-collapse text-sm md:text-3xl" cellPadding="4rem">
+        <table
+          className="max-w-full border-collapse text-sm md:text-3xl"
+          cellPadding="4rem"
+        >
           <thead>
             <tr className="border-b-2 border-gray-200">
               <th>Title</th>
@@ -56,9 +58,7 @@ export default function Goals({
                   key={day}
                   className="w-10 border-x border-gray-200 p-1 md:w-20"
                 >
-                  {new Date(
-                    startDate.getTime() + day * 24 * 60 * 60 * 1000
-                  ).toLocaleDateString("en-US", { weekday: "short" })}
+                  {startDate.add(day, "day").format("ddd")}
                 </th>
               ))}
             </tr>

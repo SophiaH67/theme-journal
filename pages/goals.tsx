@@ -3,22 +3,39 @@ import Goals from "../components/goals/Goals";
 import GoalsHelpTooltip from "../components/goals/GoalsHelpTooltip";
 import GoalEditModal from "../components/goals/GoalEditModal";
 import { useState } from "react";
+import dayjs from "dayjs";
+import weekOfYear from "dayjs/plugin/weekOfYear";
+dayjs.extend(weekOfYear);
 
 const GoalsPage: NextPage = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [week, setWeek] = useState(dayjs().week());
+  const [year, setYear] = useState(dayjs().year());
 
-  function getFirstDayOfWeek(date: Date) {
-    const day = date.getDay();
-    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
-    return new Date(date.setDate(diff));
-  }
-  const startOfWeek = getFirstDayOfWeek(new Date());
-  const endOfWeek = new Date(startOfWeek.getTime() + 7 * 24 * 60 * 60 * 1000);
+  let startDate = dayjs().year(year).week(week).startOf("week");
+  let endDate = dayjs().year(year).week(week).endOf("week");
 
   return (
     <div className="mx-auto w-full max-w-max rounded-lg border border-gray-200 py-3 shadow-md md:px-6">
+      <div className="flex justify-center">
+        <button
+          className="rounded-l-lg border border-gray-200 px-2 py-1 font-mono text-2xl font-semibold text-gray-600"
+          onClick={() => setWeek(week - 1)}
+        >
+          -
+        </button>
+        <p className="m-0 border border-gray-200 p-2 text-center font-mono text-2xl font-semibold text-gray-600">
+          Week {week}
+        </p>
+        <button
+          className="rounded-r-lg border border-gray-200 px-2 py-1 font-mono text-xl font-semibold text-gray-600"
+          onClick={() => setWeek(week + 1)}
+        >
+          +
+        </button>
+      </div>
       <div className="mx-auto w-max">
-        <Goals startDate={startOfWeek} endDate={endOfWeek} />
+        <Goals startDate={startDate} endDate={endDate} />
       </div>
       <GoalsHelpTooltip />
       <button
