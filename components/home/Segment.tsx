@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import Image, { StaticImageData } from "next/image";
 
 interface Props {
-  image: string | StaticImageData;
+  image: string;
   children: React.ReactNode;
   className?: string;
   left: boolean;
@@ -12,26 +11,32 @@ export default function Segment({ children, left, image, className }: Props) {
   return (
     <div
       className={classNames(
-        "mx-0 mb-16 min-h-[20rem] rounded-3xl bg-cover",
+        "relative mx-0 mb-16 h-[20rem] rounded-3xl bg-cover",
         className
       )}
-      style={{
-        backgroundImage: `url(${image})`,
-      }}
     >
       <div
+        className="absolute top-0 left-0 h-[20rem] w-full bg-cover bg-center bg-no-repeat md:w-1/2"
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+      ></div>
+      <div
         className={classNames(
-          "bg-gradient h-full min-h-[20rem] w-full rounded-3xl from-transparent via-fuchsia-600 to-sky-400 bg-cover text-gray-200",
+          "absolute top-0 left-0 h-[20rem] w-full rounded-3xl from-black via-black to-black bg-cover text-gray-200 opacity-30 md:from-transparent md:via-fuchsia-600 md:to-sky-400 md:opacity-100",
           left ? "bg-gradient-to-l" : "bg-gradient-to-r"
         )}
-      >
+      ></div>
+      <div className="absolute top-0 left-0 h-[20rem] w-full rounded-3xl text-gray-200">
         <div
           className={classNames(
             "flex w-full px-2 py-3 lg:px-6 lg:py-8",
             left ? "flex-row" : "flex-row-reverse"
           )}
         >
-          <div className="table h-full w-full max-w-2xl">{children}</div>
+          <div className="table h-[17rem] w-full max-w-2xl md:h-[14rem]">
+            {children}
+          </div>
         </div>
       </div>
     </div>
