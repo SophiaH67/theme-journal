@@ -27,6 +27,14 @@ const SEO: NextSeoProps = {
       sizes: "167x167",
       href: "/ios/167.png",
     },
+    {
+      rel: "preconnect",
+      href: "https://theme-system-journal-next.firebaseapp.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://apis.google.com",
+    },
   ],
   additionalMetaTags: [
     {
