@@ -26,11 +26,11 @@ export default function Segment({ children, left, image, className }: Props) {
       ></div>
       <div
         className={classNames(
-          "absolute top-0 left-0 h-[20rem] w-full rounded-3xl from-black via-black to-black bg-cover text-gray-200 opacity-30 md:from-transparent md:via-fuchsia-600 md:to-sky-400 md:opacity-100",
+          "absolute top-0 left-0 h-[20rem] w-full rounded-3xl from-black via-black to-black bg-cover text-white opacity-30 md:from-transparent md:via-fuchsia-600 md:to-sky-400 md:opacity-100",
           left ? "bg-gradient-to-l" : "bg-gradient-to-r"
         )}
       ></div>
-      <div className="absolute top-0 left-0 h-[20rem] w-full rounded-3xl text-gray-200">
+      <div className="absolute top-0 left-0 h-[20rem] w-full rounded-3xl text-white">
         <div
           className={classNames(
             "flex w-full px-2 py-3 lg:px-6 lg:py-8",
