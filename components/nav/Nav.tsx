@@ -10,7 +10,7 @@ export default function Nav() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="max-w-screen mb-4 flex h-12 items-center justify-between overflow-hidden bg-gray-200 pr-4 md:h-16">
+    <div className="max-w-screen flex h-12 items-center justify-between overflow-hidden bg-gray-200 pr-4 md:h-16">
       <div className="flex items-center">
         <Logo />
         <div className="hidden md:block">
