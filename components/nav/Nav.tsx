@@ -10,11 +10,10 @@ export default function Nav() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="mb-4 flex h-12 md:h-16  w-screen items-center justify-between bg-gray-200">
+    <div className="max-w-screen mb-4 flex h-12 items-center justify-between overflow-hidden bg-gray-200 pr-4 md:h-16">
       <div className="flex items-center">
         <Logo />
         <div className="hidden md:block">
-          {user && <Link href="/">Home</Link>}
           {user && <Link href="/goals">Goals</Link>}
         </div>
       </div>
