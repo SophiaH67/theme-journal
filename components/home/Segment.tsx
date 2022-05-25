@@ -11,12 +11,15 @@ export default function Segment({ children, left, image, className }: Props) {
   return (
     <div
       className={classNames(
-        "relative mx-0 mb-16 h-[20rem] rounded-3xl bg-cover",
+        "relative h-[20rem] rounded-3xl bg-cover",
         className
       )}
     >
       <div
-        className="absolute top-0 left-0 h-[20rem] w-full bg-cover bg-center bg-no-repeat md:w-1/2"
+        className={classNames(
+          "absolute top-0 left-0 h-[20rem] w-full bg-cover bg-center bg-no-repeat md:w-1/2",
+          { "md:ml-[50%]": left }
+        )}
         style={{
           backgroundImage: `url(${image})`,
         }}
