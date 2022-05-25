@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { CACHE_SIZE_UNLIMITED, initializeFirestore } from "firebase/firestore";
+import { enableIndexedDbPersistence } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,4 +30,18 @@ export const firestore = initializeFirestore(app, {
   cacheSizeBytes: CACHE_SIZE_UNLIMITED,
 });
 
+// Enable persistence for the Firestore SDK
+if (typeof window !== "undefined") {
+  try {
+    enableIndexedDbPersistence(firestore);
+  } catch (e) {
+    if (!["failed-precondition", "unimplemented"].includes((e as any).code)) {
+      throw e;
+    }
+    console.warn(
+      "Firestore persistence is not enabled. With the reason:",
+      (e as any).code
+    );
+  }
+}
 export const auth = getAuth(app);
