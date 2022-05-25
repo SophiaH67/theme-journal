@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Nav from "../components/nav/Nav";
 import ReactModal from "react-modal";
 import Footer from "../components/home/Footer";
+import NextProgress from "next-progress";
 
 function MyApp({ Component, pageProps }: AppProps) {
   ReactModal.setAppElement("#__next");
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className="min-w-screen min-h-screen font-roboto">
       <div className="flex min-h-screen flex-col justify-between">
         <div>
+          <NextProgress />
           <Nav />
           <Component {...pageProps} />
         </div>
