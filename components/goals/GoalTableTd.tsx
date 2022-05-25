@@ -2,6 +2,8 @@ import { Dayjs } from "dayjs";
 import { QueryDocumentSnapshot, updateDoc } from "firebase/firestore";
 import emoji from "react-easy-emoji";
 import { Goal, Progress } from "../../lib/goals";
+import { useReward } from "react-rewards";
+import { renderToString } from "react-dom/server";
 
 export default function GoalTableTd({
   goal,
@@ -27,6 +29,20 @@ export default function GoalTableTd({
       break;
   }
 
+  const emojiElement = emoji(
+    progress === Progress.COMPLETED
+      ? "☠️"
+      : progress === Progress.IN_PROGRESS
+      ? "🎉"
+      : "🚀"
+  );
+
+  const { reward } = useReward("rewardId", "emoji", {
+    elementCount: 24,
+    elementSize: 64,
+    emoji: [renderToString(emojiElement)],
+  });
+
   async function cycleEmoji() {
     let newProgress = progress;
     switch (progress) {
@@ -40,6 +56,7 @@ export default function GoalTableTd({
         newProgress = Progress.NOT_STARTED;
         break;
     }
+    reward();
     await updateDoc(goal.ref, {
       progress: {
         ...goal.data().progress,
@@ -50,7 +67,7 @@ export default function GoalTableTd({
 
   return (
     <td>
-      <span id="rewardId" />
+      <span id="rewardId" className="pointer-events-none" />
       {emoji(emojiChar, {
         size: "72x72",
         ext: ".png",
