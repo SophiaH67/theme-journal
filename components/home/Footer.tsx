@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="flex w-full items-center justify-between bg-gray-300 px-4 py-4 md:px-6 md:py-8">
+    <div className="flex w-full items-center justify-between bg-gray-300 px-4 py-4">
       <p className="text-sm text-gray-600">
         © {new Date().getFullYear()}{" "}
         <a
