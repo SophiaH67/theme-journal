@@ -48,7 +48,7 @@ const GoalsPage: NextPage = () => {
       </div>
       <GoalsHelpTooltip />
       <button
-        className="my-2 w-full rounded border bg-blue-500 py-2 px-3 text-sm font-semibold text-white hover:bg-blue-600 md:text-2xl"
+        className="my-2 mx-[2%] w-[96%] rounded border bg-blue-500 py-2 px-3 text-sm font-semibold text-white hover:bg-blue-600 md:mx-[1%] md:w-[98%] md:text-2xl"
         onClick={() => setCreateModalOpen(true)}
       >
         Create Goal
