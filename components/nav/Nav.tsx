@@ -13,9 +13,7 @@ export default function Nav() {
     <div className="max-w-screen flex h-12 items-center justify-between overflow-hidden bg-gray-200 pr-4 md:h-16">
       <div className="flex items-center">
         <Logo />
-        <div className="hidden md:block">
-          {user && <Link href="/goals">Goals</Link>}
-        </div>
+        <div>{user && <Link href="/goals">Goals</Link>}</div>
       </div>
       {user ? (
         <UserMenu user={user} />
