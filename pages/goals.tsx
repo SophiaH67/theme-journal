@@ -5,6 +5,8 @@ import GoalEditModal from "../components/goals/GoalEditModal";
 import { useState } from "react";
 import dayjs from "dayjs";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import { NextSeo } from "next-seo";
+import SEO from "../lib/seo";
 dayjs.extend(weekOfYear);
 
 const GoalsPage: NextPage = () => {
@@ -17,6 +19,7 @@ const GoalsPage: NextPage = () => {
 
   return (
     <div className="mx-auto w-full max-w-max rounded-lg border border-gray-200 py-3 shadow-md md:px-6">
+      <NextSeo {...SEO} />
       <div className="flex items-center justify-between">
         <span className="text-xs text-gray-700 md:text-base">
           Week of {startDate.format("MMMM D, YYYY")} -{" "}
@@ -45,7 +48,7 @@ const GoalsPage: NextPage = () => {
       </div>
       <GoalsHelpTooltip />
       <button
-        className="my-2 w-full rounded border bg-blue-500 py-2 px-3 text-sm font-semibold text-white hover:bg-blue-600 md:text-2xl"
+        className="my-2 mx-[2%] w-[96%] rounded border bg-blue-500 py-2 px-3 text-sm font-semibold text-white hover:bg-blue-600 md:mx-[1%] md:w-[98%] md:text-2xl"
         onClick={() => setCreateModalOpen(true)}
       >
         Create Goal
